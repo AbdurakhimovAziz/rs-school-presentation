@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>reveal.js</title>
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/blood.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <img style="width: 400px; height: 400px;" src="images/react.png" alt="react">
+        <h2>React</h2>
+      </section>
+      <section  data-background-image="images/bg.jpg">
+        <h2 style="letter-spacing: 5px;">Contents</h2>
+        <ul>
+          <li>Introduction</li>
+          <li>Statistics</li>
+          <li>Key concepts
+            <ul>
+              <li>JSX</li>
+              <li>Components</li>
+              <li>Props and State</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section data-background-image="images/bg.jpg">
+        <h3>What is React?</h3>
+        <p>React is an open-source JavaScript library for creating user interface. It is maintained by Facebook and
+          mainly used in the development of SPA</p>
+        <p style="font-size: 0.6em; margin-top: 4em;">Repository: <a
+            href="https://github.com/facebook/react">https://github.com/facebook/react</a></p>
+      </section>
+      <section data-background-image="images/bg.jpg">
+        <section>
+          <h3>Statistics</h3>
+          <ul>
+            <li>Ranked 2nd on
+              <a href="https: //insights.stackoverflow.com/survey/2020#most-loved-dreaded-and-wanted">StackOverflow
+                Developer Survey Results 2020</a> in the category of Most Loved and Wanted Web
+              Frameworks
+            </li>
+            <li>There are about 1,418,248 websites that use React</li>
+            <li>9706 companies and 85646 developers use React</li>
+          </ul>
+        </section>
+        <section><img src="images/react-usage.png" alt=""></section>
+        <section>
+          <h3>Most used JS frameworks</h3>
+          <img src="images/most-used.png" alt="">
+        </section>
+      </section>
+      <section data-background-image="images/bg.jpg">
+        <h3>React key concepts</h3>
+      </section>
+      <section data-background-image="images/bg.jpg">
+        <section data-auto-animate>
+          <h3>JSX</h3>
+          <ul>
+            <li>JavaScript Syntax Extension</li>
+            <li>XML-like syntax for creating React elements</li>
+            <li>Allows to write HTML in React</li>
+            <li>Compiles into JavaScript</li>
+          </ul>
+        </section>
+        <section data-auto-animate>
+          <h3>JSX</h3>
+          <ul>
+            <li>JavaScript Syntax Extension</li>
+            <li>XML-like syntax for creating React elements</li>
+            <li>Allows to write HTML in React</li>
+            <li>Compiles into JavaScript</li>
+          </ul>
+          <pre style="width: 100%;"><code class="language-javascript" data-trim data-line-numbers=1|3-9|11,12>
+              const myelement = <h1>Hello World!</h1>;
+
+              const element = (
+              <ul>
+                <li>Apples</li>
+                <li>Bananas</li>
+                <li>Cherries {5+5}</li>
+              </ul>
+              );
+
+              ReactDOM.render(myelement, document.getElementById('root'));
+              ReactDOM.render(element, document.getElementById('root'));
+            </code></pre>
+        </section>
+      </section>
+      <section data-background-image="images/bg.jpg">
+        <section>
+          <h3>Components</h3>
+          <p>Components are independent and reusable building blocks of web application</p>
+          <p>They allow us to split complex UI into small, isolated pieces</p>
+          <p>React components are basically just JS functions. They accept some inputs (called "props") and return React
+            elements describing what should be displayed on the screen</p>
+        </section>
+        <section> <img src="images/React-components.png" alt="">
+        </section>
+        <section>
+          <p>Conponents can either be JS functions or classes</p>
+          <div style="display: flex; margin-top: 50px;">
+            <div style="margin-right: 30px;">Funtion Component
+              <pre style="width: 100%;"><code class="language-javascript" data-trim data-line-numbers>
+                  function Name() {
+                    return <h2>Hi, my name is Joe!</h2>;
+                  }
+                </code></pre>
+            </div>
+            <div>Class Component
+              <pre style="width: 100%;"><code class="language-javascript" data-trim data-line-numbers>
+                  class Person extends React.Component {
+                    render() {
+                      return <h2>Hi again from Joe!</h2>;
+                    }
+                  }
+                </code></pre>
+            </div>
+          </div>
+        </section>
+        <section>
+          <p>We can use components inside other components</p>
+          <pre style="width: 100%;"><code class="language-javascript" data-trim data-line-numbers>
+            <script type="text/template">
+
+              class Car extends React.Component {
+                render() {
+                  return <h2>I am a Car!</h2>;
+                }
+              }
+              
+              class Garage extends React.Component {
+                render() {
+                  return (
+                    <div>
+                      <h1>Who lives in my Garage?</h1>
+                      <Car />
+                    </div>
+                  );
+                }
+              }
+                  
+              ReactDOM.render(<Garage />, document.getElementById('root'));
+            </script>
+          </code></pre>
+        </section>
+      </section>
+      <section data-background-image="images/bg.jpg">
+        <section>
+          <h3>Props</h3>
+          <ul>
+            <li>Arguments passed into React components</li>
+            <li>Passed like HTML attributes</li>
+            <li>Props are immutable</li>
+            <li>In components they can be accessed via <strong>this.props</strong></li>
+          </ul>
+          <pre><code class="language-javascript" data-trim data-line-numbers>
+            const myelement = &lt;Car brand="Ford" /&gt;; 
+            
+            class Car extends React.Component {
+              render() {
+                return <h2>I am a {this.props.brand}!</h2>;
+              }
+            }
+          </code></pre>
+        </section>
+        <section>
+          <p>We can also pass functions</p>
+          <pre><code class="language-javascript" data-trim data-line-numbers>
+            const clickHandler = () => {
+              console.log('clicked!');
+            }
+
+            const btn = &lt;Button text="Click me!" onClick={clickHandler} /&gt;; 
+            
+            const Button = ({ text, onclick }) => {
+              return &lt;button onClick={onClick}&gt;{text}&lt;/button&gt;
+            }
+          </code></pre>
+        </section>
+      </section>
+      <section data-background-image="images/bg.jpg">
+        <section>
+          <h3>State</h3>
+          <ul>
+            <li>Property of React class component</li>
+            <li>Holds internal state of component</li>
+            <li>Accessed via <strong>this.state</strong></li>
+            <li>When state changes component re-renders</li>
+          </ul>
+          <pre><code class="language-javascript" data-trim data-line-numbers>
+            class Counter extends React.Component {
+              state = {
+                value: 0
+              };
+            }
+          </code></pre>
+        </section>
+        <section>
+          <h4>Changing the state</h4>
+          <p>To change a value in the state object we use <b>this.setState()</b> method</p>
+          <pre style="width: 100%;"><code class="language-javascript" data-trim data-line-numbers>
+            class Counter extends React.Component {
+              state = {
+                value: 0
+              };
+            handleIncrement= () => {
+              this.setState(state => {
+                 value: state.value + 1 
+              });
+            };
+            handleDecrement= () => {
+              this.setState(state => {
+                 value: state.value - 1 
+              });
+            };
+            render() {
+                return (
+                  <div>
+                    <h2>{this.state.value}</h2>
+                    <button onClick={this.handleDecrement}>Decrement</button>
+                    <button onClick={this.handleIncrement}>Increment</button>
+                  </div>
+                );
+            }
+            };
+          </code></pre>
+          <p style="font-size: 18px; margin-top: 30px;">Example from: 
+            <a href="https://www.freecodecamp.org/news/learn-react-basics-in-10-minutes/">https://www.freecodecamp.org/news/learn-react-basics-in-10-minutes/</a>
+          </p>
+        </section>
+      </section>
+      <section data-background-image="images/bg.jpg">
+        <h3>Thank you!</h3>
+      </section>
+    </div>
+  </div>
+
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
